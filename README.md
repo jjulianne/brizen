@@ -1,73 +1,107 @@
-# React + TypeScript + Vite
+# Brizen - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Brizen** es una plataforma web premium diseñada para la personalización y visualización de indumentaria en tiempo real. Este proyecto combina una interfaz moderna y minimalista con tecnologías 3D para ofrecer una experiencia de usuario inmersiva.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Estado del proyecto
 
-## React Compiler
+Actualemente estamos en una etapa avanzada de desarrollo frontend. Las funcionalidades clave, como el **visualizador 3D interactivo** (cambio de color, aplicación de logos, rotación), el sistema de **internacionalización (Español/Inglés)**, el **modo oscuro** y el **catálogo de productos**, están completamente implementadas. Hoy en dia se está trabajando en la optimización de assets y la integración final de flujos de contacto.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Stack Tecnológico
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+El proyecto utiliza un stack moderno enfocado en el rendimiento y la experiencia visual:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Core:** Vite + React + TypeScript
+* **Estilos y UI:** Tailwind CSS + Framer Motion (Animaciones)
+* **3D / WebGL:** React Three Fiber (R3F) + @react-three/drei + Three.js
+* **Navegación:** React Router DOM
+* **Internacionalización:** i18next (react-i18next)
+* **Iconos:** Lucide React
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Instalación y ejecución local
+
+### 1. Clonar el repositorio
+
+```bash
+git clone [https://github.com/jjulianne/brizen.git]
+cd brizen
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
+### 2. Instalar dependencias
+Se recomienda usar pnpm (aunque npm también funciona):
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+# o
+npm install
 ```
+
+---
+### 3. Configuración de Assets
+Asegúrate de que los siguientes archivos existan en la carpeta /public para el correcto funcionamiento del visualizador 3D y el branding:
+
+* shirt.glb (Modelo 3D optimizado)
+* brizen-logo.svg (Logo para modo claro)
+* brizen-logo-white.svg (Logo para modo oscuro)
+
+---
+
+### 4. Ejecutar servidor de desarrollo
+
+```bash
+pnpm dev
+# o
+npm run dev
+```
+
+---
+
+### 5. Abrir en el navegador
+Visita http://localhost:5173 para ver la aplicación.
+
+---
+
+## Funcionalidades y Uso
+### Diseñador 3D:
+
+- Navega a la sección "Diseña tu Remera".
+- Arrastra el mouse para rotar la prenda y usa el scroll para hacer zoom.
+- Selecciona un color base de la paleta.
+- Sube tu propio logo (.png) para ver cómo queda estampado en tiempo real.
+
+### Catálogo:
+
+- Explora los productos con filtros animados por categoría.
+- Haz clic en "Ver Info" para abrir un modal con detalles.
+- Usa el botón de WhatsApp para consultar stock directamente.
+
+### Configuración Global:
+
+- Alterna entre Modo Claro/Oscuro desde el Navbar.
+- Cambia el idioma (ES/EN) instantáneamente.
+
+---
+
+## Estructura del proyecto
+
+    brizen/
+    ├─ public/              # Assets estáticos (Modelos 3D, Logos, Favicon)
+    ├─ src/
+    │  ├─ components/       # Componentes reutilizables (Navbar, Hero, DesignSection, Catalog...)
+    │  ├─ locales/          # (Opcional) Archivos de traducción json si se separan
+    │  ├─ App.tsx           # Configuración de Rutas
+    │  ├─ main.tsx          # Punto de entrada y providers
+    │  ├─ index.css         # Configuración de Tailwind y fuentes
+    │  └─ i18n.ts           # Configuración de idiomas
+    ├─ package.json
+    ├─ tsconfig.json
+    ├─ tailwind.config.js
+    └─ vite.config.ts
+
+---
