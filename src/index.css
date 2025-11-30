@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Poppins:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+/* Sobreescribimos el comportamiento por defecto y le dice a Tailwind 
+   que active 'dark:' cuando encuentre la clase .dark en un padre */
+@variant dark (&:where(.dark, .dark *));
+
+/* Configuracion del tema (Es necesario porque reemplaza al tailwind.config.js en v4) */
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --font-serif: 'Lora', serif;
+
+  /* El rosa del logo (aproximado, vibrante) */
+  --color-brizen-pink: #E639A8; 
+  /* Un tono mas claro para fondos/hover */
+  --color-brizen-pink-light: #FCE7F3; 
+  /* Un tono mas oscuro para texto/bordes */
+  --color-brizen-pink-dark: #BE1888;
+}
+
+/* Base */
+body {
+  font-family: var(--font-sans);
+  /* Fondo blanco limpio con un toque muy sutil de gris */
+  background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+  color: #18181b; /* Gris casi negro (zinc-900) */
+  transition: background 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  /* Selection color para que combine */
+  ::selection {
+    background-color: var(--color-brizen-pink-light);
+    color: var(--color-brizen-pink-dark);
+  }
+}
+
+/* Tema Oscuro: Profundo, elegante con el rosa */
+.dark body {
+  background: linear-gradient(to bottom right, #09090b, #18181b);
+  color: #f4f4f5;
+  ::selection {
+    background-color: var(--color-brizen-pink-dark);
+    color: #ffffff;
+  }
+}
