@@ -6,7 +6,7 @@ const resources = {
     translation: {
       navbar: {
         home: "Home",
-        design: "Design Your Shirt",
+        design: "Start designing",
         catalog: "Catalog",
         contact: "Contact",
       },
@@ -100,7 +100,7 @@ const resources = {
     translation: {
       navbar: {
         home: "Inicio",
-        design: "Diseña tu Remera",
+        design: "Empezar a diseñar",
         catalog: "Catálogo",
         contact: "Contacto",
       },
